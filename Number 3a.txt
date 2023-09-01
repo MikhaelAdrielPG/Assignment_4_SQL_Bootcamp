@@ -1,0 +1,8 @@
+3a. Buatlah query untuk menampilkan : Data nilai tugas dari  peserta tertentu
+
+SELECT p.name AS participant_name, a.title AS assignment_title, i.name AS instructor_name, s.score
+FROM participants p
+INNER JOIN scores s ON p.participant_id = s.participant_id
+INNER JOIN assignments a ON s.assignment_id = a.assignment_id
+INNER JOIN instructors i ON s.instructor_id = i.instructor_id
+WHERE p.participant_id = 1;

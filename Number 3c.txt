@@ -1,0 +1,13 @@
+3c. Buatlah query untuk menampilkan : Pengelompokkan jumlah peserta berdasarkan rentang nilai (100-80, 80-60, 60-40, 40-20, 20-0)
+
+SELECT
+    CASE
+        WHEN s.score >= 80 THEN '100-80'
+        WHEN s.score >= 60 THEN '80-60'
+        WHEN s.score >= 40 THEN '60-40'
+        WHEN s.score >= 20 THEN '40-20'
+        ELSE '20-0'
+    END AS score_range,
+    COUNT(*) AS participant_count
+FROM scores s
+GROUP BY score_range;

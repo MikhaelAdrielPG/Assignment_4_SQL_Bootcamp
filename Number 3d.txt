@@ -1,0 +1,15 @@
+3d. sama seperti 3c, tapi tetapi dijabarkan siapa-siapa saja yang di rentang nilai tersebut, dibikin dalam string panjang dengan pemisah tanda koma saja.
+
+SELECT
+    CASE
+        WHEN s.score >= 80 THEN '100-80'
+        WHEN s.score >= 60 THEN '80-60'
+        WHEN s.score >= 40 THEN '60-40'
+        WHEN s.score >= 20 THEN '40-20'
+        ELSE '20-0'
+    END AS score_range,
+    string_agg(p.name, ', ') AS participants_name
+FROM scores s
+INNER JOIN participants p ON s.participant_id = p.participant_id
+GROUP BY score_range
+ORDER BY score_range DESC;

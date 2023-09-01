@@ -1,0 +1,40 @@
+3e. listing tanggal di rentang tertentu, dan berapa banyak penilaian yang terjadi pada masing-masing tanggal, akan butuh ada rombak kolom tabel tabel nya, tapi TIDAK BOLEH drop tabel, coba rombak dengan query2 alter table
+
+--tambahkan assesment_date
+
+ALTER TABLE scores ADD COLUMN assessment_date DATE;
+
+--tambahkan data dengan update
+
+UPDATE Scores
+SET assessment_date = '2023-08-31'
+WHERE score_id IN (1, 2, 3, 4, 5, 6, 7, 8,9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20);
+
+UPDATE Scores
+SET assessment_date = '2023-08-01'
+WHERE score_id IN (21, 22, 23, 24, 25, 26, 27, 28, 29, 30);
+
+UPDATE Scores
+SET assessment_date = '2023-08-15'
+WHERE score_id IN (31, 32, 33, 34, 35);
+
+UPDATE Scores
+SET assessment_date = '2023-09-01'
+WHERE score_id IN (36, 37, 38, 39);
+
+--3e
+
+SELECT
+    assessment_date,
+    COUNT(*) AS assessment_count
+FROM scores
+WHERE assessment_date = '2023-09-01'
+GROUP BY assessment_date;
+
+--tampilkan semuanya
+
+SELECT
+    assessment_date,
+    COUNT(*) AS assessment_count
+FROM scores
+GROUP BY assessment_date;

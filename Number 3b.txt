@@ -1,6 +1,7 @@
 3b. Buatlah query untuk menampilkan : Data rata-rata nilai tugas untuk masing-masing peserta
 
-SELECT p.name, AVG(s.score) AS average_score
+SELECT p.participant_id, p.name, COALESCE(AVG(s.score), 0) AS average_score
 FROM participants p
-INNER JOIN scores s ON p.participant_id = s.participant_id
-GROUP BY p.participant_id;
+LEFT JOIN scores s ON p.participant_id = s.participant_id
+GROUP BY p.participant_id
+ORDER BY participant_id ASC;

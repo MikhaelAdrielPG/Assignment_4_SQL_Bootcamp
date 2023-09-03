@@ -118,6 +118,10 @@ INSERT INTO participants (participant_id, name, email, phone_number)
 VALUES
     (11, 'John Doe', 'john@example.com', '123-456-7890');
 
+INSERT INTO participants (participant_id, name, email, phone_number)
+VALUES
+    (12, 'Alex', 'alex@example.com', '321-456-7890');
+
 INSERT INTO scores (score_id, participant_id, assignment_id, instructor_id, score)
 VALUES
     (39, 1, 1, 1, 85.5);

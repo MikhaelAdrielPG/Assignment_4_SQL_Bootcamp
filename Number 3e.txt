@@ -24,17 +24,13 @@ WHERE score_id IN (36, 37, 38, 39);
 
 --3e
 
-SELECT
-    assessment_date,
-    COUNT(*) AS assessment_count
-FROM scores
-WHERE assessment_date = '2023-09-01'
-GROUP BY assessment_date;
-
---tampilkan semuanya
-
-SELECT
-    assessment_date,
-    COUNT(*) AS assessment_count
-FROM scores
-GROUP BY assessment_date;
+WITH assignment_date AS(
+	SELECT
+			TO_CHAR(generated_date, 'YYYY-MM-DD') AS formatted_date
+	FROM generate_series('2023-07-30'::date, '2023-09-03'::date, '1 day'::interval) AS generated_date
+) 
+SELECT formatted_date, COUNT(participant_id) AS date_count
+FROM scores s
+RIGHT JOIN assignment_date ON formatted_date::date = s.assessment_date
+GROUP BY formatted_date
+ORDER BY formatted_date;
